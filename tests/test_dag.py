@@ -15,7 +15,6 @@ class TestDag(unittest.TestCase):
         task_ids = list(map(lambda task: task.task_id, tasks))
         self.assertListEqual(task_ids, ['s3_sensor', 'print_key'])
 
-        self.assertEqual(type(tasks[0]), airflow.operators.sensors.S3PrefixSensor)
-        print (type(tasks[0]))
+        self.assertEqual(type(tasks[0]), airflow.operators.sensors.S3KeySensor)
 
 

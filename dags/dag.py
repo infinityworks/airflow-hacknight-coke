@@ -1,4 +1,4 @@
-from airflow.operators.sensors import S3PrefixSensor
+from airflow.operators.sensors import S3KeySensor
 from airflow.operators.bash_operator import BashOperator
 from datetime import datetime as dt
 
@@ -6,10 +6,10 @@ from airflow import DAG
 
 with DAG('s3_event') as dag:
 
-    t1 = S3PrefixSensor(
+    t1 = S3KeySensor(
         task_id='s3_sensor',
         bucket_name='airflow-input-coke',
-        prefix='',
+        bucket_key='*',
         start_date=dt.now(),
         dag=dag)
     
